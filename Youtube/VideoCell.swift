@@ -43,13 +43,14 @@ class VideoCell: UICollectionViewCell {
         return label
     }()
     
-    let subtitleTextView: UITextView = {
-        let textView = UITextView()
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.text = "EQuimper • 442 views • 1 months ago"
-        textView.textContainerInset = UIEdgeInsetsMake(0, -4, 0, 0)
-        textView.textColor = .lightGray
-        return textView
+    let subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "EQuimper • 442 views • 1 months ago"
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .lightGray
+        label.sizeToFit()
+        return label
     }()
     
     func setupViews() {
@@ -57,7 +58,7 @@ class VideoCell: UICollectionViewCell {
         addSubview(separatorView)
         addSubview(userProfileImageView)
         addSubview(titleLabel)
-        addSubview(subtitleTextView)
+        addSubview(subtitleLabel)
         
         // autolayout
         addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: thumbnailImageView)
@@ -78,13 +79,13 @@ class VideoCell: UICollectionViewCell {
         addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20))
         
         // top constraints
-        addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 4))
+        addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: -4))
         // left constraints
-        addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .left, relatedBy: .equal, toItem: userProfileImageView, attribute: .right, multiplier: 1, constant: 8))
+        addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .left, relatedBy: .equal, toItem: userProfileImageView, attribute: .right, multiplier: 1, constant: 8))
         // right constraints
-        addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .right, relatedBy: .equal, toItem: thumbnailImageView, attribute: .right, multiplier: 1, constant: 0))
+        addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .right, relatedBy: .equal, toItem: thumbnailImageView, attribute: .right, multiplier: 1, constant: 0))
         // height constraints
-        addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 30))
+        addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 30))
     }
     
     required init?(coder aDecoder: NSCoder) {
